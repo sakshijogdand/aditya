@@ -1,0 +1,45 @@
+image: rvancea/maven-chrome-jdk8:latest
+
+stages:          # List of stages for jobs, and their order of execution
+  - build
+ # - mvninstall
+  - docker build
+  - test
+  - sonarqube
+  
+#maven-package:
+#    stage: mvninstall
+#    script: "mvn install "
+
+
+    
+build-job:       # This job runs in the build stage, which runs first.
+  stage: build
+  script:
+    - mvn clean install
+    - echo "Compile complete."
+  artifacts:
+    paths:
+      - target/
+
+docker-build:
+  image: docker
+  services:
+    - docker:dind
+  stage: docker build
+  script:
+    - mvn clean install 
+    - docker build -t springboot-demo:latest .
+    #- docker run --network=host -e SONAR_HOST_URL='http://172.53.202.11:9000/' --user="$(RookiesBatch2022 -u):$(RookiesBatch2022 -g)" -v "$PWD:/usr/src" sonarsource/sonar-scanner-cli
+    - docker run -d -p 8080:8080 springboot-demo:latest
+    - docker images
+    
+test:
+  stage: test
+  script:
+    - mvn clean test
+
+sonarqube_master_job:
+    stage: test
+    script:
+        - mvn --batch-mode verify sonar:sonar -Dsonar.host.url=$SONAR_URL -Dsonar.login=$SONAR_LOGIN -Dsonar.password=$SONAR_PASSWORD
