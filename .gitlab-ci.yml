@@ -44,4 +44,4 @@ sonarqube_master_job:
     stage: test
     script:
         #- mvn --batch-mode verify sonar:sonar -Dsonar.host.url=$SONAR_URL -Dsonar.login=$SONAR_LOGIN -Dsonar.password=$SONAR_PASSWORD
-        - Dsonar.host.url='http://172.53.202.11:9000' -Dsonar.login='e240fa6b0e7d03b9a57086d0ddcb99430165e7eb' -Dsonar.projectName='Java Hello World'  -Dsonar.sources='./src'  -Dsonar.projectKey='hello-world' -Dsonar.java.binaries='./target/classes'
+        - Dsonar.host.url='http://172.53.202.11:9000\' -Dsonar.login='e240fa6b0e7d03b9a57086d0ddcb99430165e7eb' -Dsonar.projectName='Java Hello World'  -Dsonar.sources='./src'  -Dsonar.projectKey='hello-world' -Dsonar.java.binaries='./target/classes'
