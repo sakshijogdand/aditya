@@ -23,5 +23,5 @@ docker-build:
   - docker build -t myjava:latest .
   - docker login https://registry.hub.docker.com/ --username adityashitole456 --password-stdin Akansha@456
  # - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" "$CI_REGISTRY"
-  - docker tag myjava:latest pravinsp/helloworld:latest
-  - docker push pravinsp/helloworld:latest
+  - docker tag myjava:latest ibmcom/helloworld:latest
+  - docker push ibmcom/helloworld:latest
