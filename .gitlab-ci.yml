@@ -21,6 +21,7 @@ docker-build:
   stage: package
   script:
   - docker build -t myjava:latest .
+  - docker login https://hub.docker.com/ --username adityashitole456 --password Akansha@456
   - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" "$CI_REGISTRY"
   - docker tag myjava:latest pravinsp/helloworld:latest
   - docker push pravinsp/helloworld:latest
