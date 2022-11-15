@@ -73,10 +73,10 @@ sonarcloud-check:
    # - merge_requests
     #- master
 
-#sonarqube_master_job:
+sonarqube_master_job:
  #   image: sonarqube maven
-  #  stage: test
-   # script:
+  stage: test
+  script:
     #  - SONAR_TOKEN = 'a9c98b4041486e4f7496a2cc9c29cb76b55fa378' SONAR_HOST_URL = 'https://sonarcloud.io'
-        #- mvn --batch-mode verify sonar:sonar -Dsonar.host.url=$SONAR_URL -Dsonar.login=$SONAR_LOGIN -Dsonar.password=$SONAR_PASSWORD
+        - mvn --batch-mode verify sonar:sonar -Dsonar.host.url=$SONAR_URL -Dsonar.login=$SONAR_LOGIN -Dsonar.password=$SONAR_PASSWORD
         #- Dsonar.host.url='https://sonarcloud.io/' -Dsonar.login='adityashitole456@gmail.com' -Dsonar.projectName='Java Hello World'  -Dsonar.sources='./src'  -Dsonar.projectKey='hello-world' -Dsonar.java.binaries='./target/classes'
