@@ -40,7 +40,7 @@ test:
     - mvn clean test
 
 sonarqube_master_job:
-    image: sonarqube
+    image: sonarqube maven
     stage: test
     script:
         #- mvn --batch-mode verify sonar:sonar -Dsonar.host.url=$SONAR_URL -Dsonar.login=$SONAR_LOGIN -Dsonar.password=$SONAR_PASSWORD
