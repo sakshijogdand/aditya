@@ -21,9 +21,9 @@ docker-build:
   stage: package
   script:
     - mvn install
-    - docker scan
     - docker build -t myjava:latest .
     - docker login https://registry.hub.docker.com/ --username adityashitole456 --password-stdin Akansha@456
   # - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" "$CI_REGISTRY"
-    - docker tag myjava:latest ibmcom/helloworld:latest
+    #- docker tag myjava:latest ibmcom/helloworld:latest
+    - docker run -d -p myjava:latest
     - docker push ibmcom/helloworld:latest
