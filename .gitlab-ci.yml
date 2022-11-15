@@ -5,7 +5,9 @@ stages:          # List of stages for jobs, and their order of execution
  # - mvninstall
   - docker build
   - test
-  - sonarqube
+  - package 
+  - variables
+  - sonarcloud-check
   
 #maven-package:
 #    stage: mvninstall
@@ -57,8 +59,9 @@ test:
 
 variables:
   SONAR_USER_HOME: "${https://sonarcloud.io/}/.sonar"  # Defines the location of the analysis task cache
-  GIT_DEPTH: "0"  # Tells git to fetch all the branches of the project, required by the analysis task
+  GIT_DEPTH: "1"  # Tells git to fetch all the branches of the project, required by the analysis task
 sonarcloud-check:
+  stage: test
   image: maven:3.6.3-jdk-11
   cache:
     key: "${a9c98b4041486e4f7496a2cc9c29cb76b55fa378}"
