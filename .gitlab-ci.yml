@@ -48,11 +48,12 @@ docker-build:
     - docker build -t adityashitole456/helloworld1:latest .
     - docker info
     - docker push adityashitole456/helloworld1:latest
+    - docker run -d -p 8080:8080 adityashitole456/helloworld1:latest
 
 
 sonarqube-check:
   image:
-    name: sonarsource/sonar-scanner-cli:latest
+    name: sonarsource/sonarscannerbuildkite/sonarscanner:latest
     entrypoint: [""]
   variables:
     SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
@@ -62,7 +63,7 @@ sonarqube-check:
     paths:
       - .sonar/cache
   script:
-    - sonar-scanner -Dsonar.qualitygate.wait=true
+    - sonarscannerbuildkite/sonarscanner -Dsonar.qualitygate.wait=true
   allow_failure: true
 
 
